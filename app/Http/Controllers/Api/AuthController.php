@@ -14,8 +14,11 @@ class AuthController extends Controller
     public function register(Request $request): JsonResponse
     {
         $input = $request->validate([
-            'name' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'unique:users'],
+            'username' => ['required', 'max:255'],
+            'first_name' => ['required', 'max:255'],
+            'last_name' => ['required', 'max:255'],
+            'phone' => ['nullable', 'max:15', 'unique:users'],
+            'email' => ['nullable', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'confirmed'],
         ]);
 
@@ -29,7 +32,7 @@ class AuthController extends Controller
     public function login(Request $request): JsonResponse
     {
         $credentials = $request->validate([
-            'email' => 'email|required',
+            'username' => 'required|max:255',
             'password' => 'required'
         ]);
 

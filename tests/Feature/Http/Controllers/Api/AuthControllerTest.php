@@ -61,7 +61,7 @@ class AuthControllerTest extends TestCase
     {
         $input = (array)User::factory()->create([
             'password' => $this->password
-        ])->only(['email']);
+        ])->only(['username']);
 
         $input['password'] = $this->password;
 
